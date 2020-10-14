@@ -44,6 +44,6 @@ class MainActivity : AppCompatActivity() {
         pagingAdapter = MovieAdapter()
         binding.rvMovie.adapter = pagingAdapter
 
-        search("Batman")
+        search("hero")
     }
 }

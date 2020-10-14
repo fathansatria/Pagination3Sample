@@ -12,14 +12,14 @@ class MoviePagingSource(private val service: RestApi, private val query: String)
     ): LoadResult<Int, MovieModel> {
         try {
             // Start refresh at page 1 if undefined.
-            val nextPageNumber = params.key ?: 1
+            val nextPageNumber = params.key ?: 10
             val response = service.movies(query,nextPageNumber)
             val data = response.Search
 
             return LoadResult.Page(
                 data = data,
-                prevKey = null, // Only paging forward.
-                nextKey = nextPageNumber + 1
+                prevKey = if (nextPageNumber == 10) null else nextPageNumber - 10,
+                nextKey = if (data.isEmpty()) null else nextPageNumber + 10
             )
         } catch (e: Exception) {
             // Handle errors in this block and return LoadResult.Error if it is an

@@ -19,7 +19,7 @@ class MovieRepositories(var service : RestApi) {
     fun getResultStream(query: String): Flow<PagingData<MovieModel>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
+                pageSize = 10,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { MoviePagingSource(service, query) }
