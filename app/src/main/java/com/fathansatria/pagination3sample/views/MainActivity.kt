@@ -11,6 +11,7 @@ import com.fathansatria.pagination3sample.adapters.MovieAdapter
 import com.fathansatria.pagination3sample.databinding.ActivityMainBinding
 import com.fathansatria.pagination3sample.utils.Injection
 import com.fathansatria.pagination3sample.viewmodels.MainActivityViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         pagingAdapter = MovieAdapter()
         binding.rvMovie.adapter = pagingAdapter
 
+        searchText.text
         search("hero")
     }
 }
