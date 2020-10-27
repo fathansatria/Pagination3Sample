@@ -46,16 +46,20 @@ class MainActivity : AppCompatActivity() {
 
         pagingAdapter = MovieAdapter()
         binding.rvMovie.adapter = pagingAdapter
-        if(searchKeyword.isNullOrEmpty()){
-            rvMovie.visibility = View.GONE
-            infoSearch.visibility = View.VISIBLE
-        }else{
-            rvMovie.visibility = View.VISIBLE
-            infoSearch.visibility = View.GONE
-        }
-        searchKeyword = searchText.text.toString()
+        changeView()
         searchBtn.setOnClickListener {
+            searchKeyword = binding.searchText.text.toString()
             search(searchKeyword)
+            changeView()
+        }
+    }
+    private fun changeView(){
+        if(searchKeyword.isEmpty()){
+            binding.rvMovie.visibility = View.GONE
+            binding.infoSearch.visibility = View.VISIBLE
+        }else{
+            binding.rvMovie.visibility = View.VISIBLE
+            binding.infoSearch.visibility = View.GONE
         }
     }
 }
