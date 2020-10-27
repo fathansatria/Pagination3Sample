@@ -3,6 +3,7 @@ package com.fathansatria.pagination3sample.views
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var binding: ActivityMainBinding
     private lateinit var pagingAdapter : MovieAdapter
+    private var searchKeyword:String = ""
 
     private var searchJob: Job? = null
 
@@ -44,8 +46,16 @@ class MainActivity : AppCompatActivity() {
 
         pagingAdapter = MovieAdapter()
         binding.rvMovie.adapter = pagingAdapter
-
-        searchText.text
-        search("hero")
+        if(searchKeyword.isNullOrEmpty()){
+            rvMovie.visibility = View.GONE
+            infoSearch.visibility = View.VISIBLE
+        }else{
+            rvMovie.visibility = View.VISIBLE
+            infoSearch.visibility = View.GONE
+        }
+        searchKeyword = searchText.text.toString()
+        searchBtn.setOnClickListener {
+            search(searchKeyword)
+        }
     }
 }
